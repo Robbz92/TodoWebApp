@@ -13,17 +13,45 @@ export function TodoList() {
             }));
     }
 
+    const postTodo = (todoItem) => {
+
+        console.log("Hello: " + todoItem)
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ todoname: todoItem })
+        };
+
+        fetch('http://localhost:8080/todo/addTodo', requestOptions)
+            .then(response => response.json())
+            .then(window.location.reload(true));
+            
+    }
+
+    const deleteTodo = (todo) => {
+        console.log("Heeey " + todo);
+    }
+
     useEffect(() => {
         fetchData();
     }, []);
 
+    
 
     return (
-        <div className='TodoList'>
-            {todos.map(todo => (
-                <li key={todo.id}>{todo.todoname} {todo.id}</li>
-            ))}
-         
-        </div>
+        <>
+            <div className='divContainer'>
+                <input id="todoItem" type="text" placeholder="Add Todo" size="50"/>
+                <button onClick={() => postTodo(document.getElementById("todoItem").value)}>Add</button>
+            </div>
+
+            <div className='TodoList'>
+                {todos.map(todo => (
+                        <li key={todo.id}>{todo.todoname}
+                            <button id='todoBtn' onClick={() => deleteTodo(todo.id)}>x</button>
+                        </li>
+                ))}
+            </div>
+        </>
     )
 }

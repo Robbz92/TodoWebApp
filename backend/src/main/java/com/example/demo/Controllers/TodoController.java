@@ -4,7 +4,6 @@ import com.example.demo.Entities.Todo;
 import com.example.demo.Services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
