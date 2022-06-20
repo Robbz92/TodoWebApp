@@ -25,6 +25,7 @@ public class TodoController {
 
     @DeleteMapping("/deleteTodo/{id}")
     public void deleteTodo(@PathVariable long id) {
+        System.out.println(id);
         todoService.deleteTodo(id);
     }
 }

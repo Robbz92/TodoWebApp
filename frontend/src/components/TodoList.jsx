@@ -14,8 +14,6 @@ export function TodoList() {
     }
 
     const postTodo = (todoItem) => {
-
-        console.log("Hello: " + todoItem)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -28,15 +26,21 @@ export function TodoList() {
             
     }
 
-    const deleteTodo = (todo) => {
-        console.log("Heeey " + todo);
+    const deleteTodo = (todoId) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        };
+
+        fetch('http://localhost:8080/todo/deleteTodo/' + todoId, requestOptions)
+            .then(response => response.json())
+            .then(window.location.reload(true));
     }
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    
 
     return (
         <>
