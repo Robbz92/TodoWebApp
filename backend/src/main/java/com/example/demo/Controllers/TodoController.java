@@ -22,4 +22,9 @@ public class TodoController {
     public void addTodo(@RequestBody Todo todo) {
         todoService.addTodo(todo);
     }
+
+    @DeleteMapping("/deleteTodo/{id}")
+    public void deleteTodo(@PathVariable long id) {
+        todoService.deleteTodo(id);
+    }
 }
