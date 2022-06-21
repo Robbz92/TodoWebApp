@@ -14,16 +14,17 @@ export function TodoList() {
     }
 
     const postTodo = (todoItem) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ todoname: todoItem })
-        };
+        if (todoItem.length > 0) {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ todoname: todoItem })
+            };
 
-        fetch('http://localhost:8080/todo/addTodo', requestOptions)
-            .then(response => response.json())
-            .then(window.location.reload(true));
-            
+            fetch('http://localhost:8080/todo/addTodo', requestOptions)
+                .then(response => response.json())
+                .then(window.location.reload(true));
+        }
     }
 
     const deleteTodo = (todoId) => {
@@ -41,19 +42,20 @@ export function TodoList() {
         fetchData();
     }, []);
 
-
     return (
         <>
             <div className='divContainer'>
                 <input id="todoItem" type="text" placeholder="Add Todo" size="50"/>
-                <button onClick={() => postTodo(document.getElementById("todoItem").value)}>Add</button>
+                <button id="additem" onClick={() => postTodo(document.getElementById("todoItem").value)}>Add</button>
             </div>
 
             <div className='TodoList'>
                 {todos.map(todo => (
-                        <li key={todo.id}>{todo.todoname}
+                    <li id = "todoLi" key={todo.id}>
+                        <p id="todoName">{todo.todoname}
                             <button id='todoBtn' onClick={() => deleteTodo(todo.id)}>x</button>
-                        </li>
+                        </p>
+                    </li>
                 ))}
             </div>
         </>
