@@ -47,8 +47,22 @@ input {
   padding: 10px;
 }
 
-.TodoList #todoBtn {
-  color: white;
+.TodoList .todoBtn {
+  color: black;
   background-color: orange;
   float: right;
+}
+
+.TodoList .editTodo {
+  padding: 2px;
+  float: right;
+  display: none;
+}
+
+.TodoList .saveTodo {
+  color: black;
+  background-color: orange;
+  padding: 2px;
+  margin-left: 0px;
+  display: none;
 }

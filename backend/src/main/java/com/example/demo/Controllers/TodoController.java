@@ -25,7 +25,11 @@ public class TodoController {
 
     @DeleteMapping("/deleteTodo/{id}")
     public void deleteTodo(@PathVariable long id) {
-        System.out.println(id);
         todoService.deleteTodo(id);
+    }
+
+    @PostMapping("/updateTodo")
+    public void updateTodo(@RequestBody Todo todo) {
+        todoService.updateTodo(todo);
     }
 }
